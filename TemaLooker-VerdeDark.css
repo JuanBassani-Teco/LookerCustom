@@ -1,81 +1,38 @@
-/* Fondo general */
-body {
-  background-color: #181818 !important;
-  color: #f0f0f0 !important;
-  font-family: "Inter", "Segoe UI", sans-serif !important;
+/* ===== Tema Verde Dark ===== */
+:root{
+  --bg: #181818;
+  --text: #f0f0f0;
+  --muted: #202020;
+  --line: #2c2c2c;
+  --accent: #2DE384;
+  --highlight-row: rgba(45,227,132,0.12);
+  --highlight-col: rgba(45,227,132,0.16);
+  --link: #2DE384;
 }
 
-/* Header de tabla */
-th {
-  background-color: #222 !important;
-  color: #2DE384 !important;
-  border-bottom: 2px solid #2DE384 !important;
-  font-weight: 600 !important;
+body{ background:var(--bg) !important; color:var(--text) !important; font-family:"Inter","Segoe UI",sans-serif !important; }
+table{ position:relative; border-collapse:collapse !important; }
+
+th{
+  background:var(--muted) !important; color:var(--accent) !important;
+  border-bottom:2px solid var(--accent) !important; font-weight:700 !important;
+}
+td{
+  background:#1f1f1f !important; border-bottom:1px solid var(--line) !important;
+  color:#eaeaea !important; position:relative; z-index:1;
+}
+tr:nth-child(even) td{ background:#232323 !important; }
+
+tr:hover td{ background:var(--highlight-row) !important; color:#dfffee !important; }
+td:hover::before, th:hover::before{
+  content:""; position:absolute; top:-9999px; bottom:-9999px; left:0; right:0;
+  background:var(--highlight-col) !important; z-index:-1; pointer-events:none;
 }
 
-/* Celdas */
-td {
-  background-color: #1f1f1f !important;
-  border-bottom: 1px solid #333 !important;
-  color: #eaeaea !important;
+a{ color:var(--link) !important; }
+button{
+  background:var(--accent) !important; color:#111 !important; border:none !important;
+  border-radius:8px !important; font-weight:700 !important;
 }
+button:hover{ filter:brightness(0.95) !important; }
 
-/* Filas alternas */
-tr:nth-child(even) td {
-  background-color: #242424 !important;
-}
-
-/* Hover */
-tr:hover td {
-  background-color: #2a2a2a !important;
-  color: #2DE384 !important;
-}
-
-/* Links */
-a {
-  color: #2DE384 !important;
-}
-
-/* Botones */
-button {
-  background-color: #2DE384 !important;
-  color: #111 !important;
-  border-radius: 8px !important;
-  border: none !important;
-  font-weight: 600 !important;
-}
-
-button:hover {
-  background-color: #26b86a !important;
-}
-
-/* === HIGHLIGHT FILA Y COLUMNA === */
-table {
-  position: relative;
-  border-collapse: collapse;
-}
-
-/* Efecto fila normal */
-tr:hover td {
-  background-color: rgba(45, 227, 132, 0.15) !important;
-  color: #2DE384 !important;
-}
-
-/* Efecto columna: cuando el mouse pasa por una celda */
-td:hover::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(45, 227, 132, 0.12) !important;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Esto asegura que las celdas no rompan el efecto */
-td {
-  position: relative;
-  z-index: 1;
-}
