@@ -1,0 +1,27 @@
+body {
+  background-color: #1e1e1e !important;
+  color: #f5f5f5 !important;
+  font-family: "Inter", "Segoe UI", sans-serif !important;
+}
+
+th {
+  background-color: #2a2a2a !important;
+  color: #00bfff !important;
+  font-weight: bold !important;
+  border-bottom: 2px solid #00bfff !important;
+}
+
+td {
+  background-color: #242424 !important;
+  border-bottom: 1px solid #333 !important;
+  color: #f5f5f5 !important;
+}
+
+tr:nth-child(even) td {
+  background-color: #1f1f1f !important;
+}
+
+tr:hover td {
+  background-color: #333 !important;
+  color: #00ffb7 !important;
+}
