@@ -1,0 +1,51 @@
+/* Fondo general */
+body {
+  background-color: #ffffff !important;
+  color: #222 !important;
+  font-family: "Inter", "Segoe UI", sans-serif !important;
+}
+
+/* Header de tabla */
+th {
+  background-color: #f9e8f0 !important;
+  color: #A8165C !important;
+  border-bottom: 2px solid #A8165C !important;
+  font-weight: 600 !important;
+}
+
+/* Celdas */
+td {
+  background-color: #fff !important;
+  border-bottom: 1px solid #ddd !important;
+  color: #222 !important;
+}
+
+/* Filas alternas */
+tr:nth-child(even) td {
+  background-color: #f9f9f9 !important;
+}
+
+/* Hover */
+tr:hover td {
+  background-color: #fde5f0 !important;
+  color: #7a0e44 !important;
+}
+
+/* Links */
+a {
+  color: #A8165C !important;
+  font-weight: 500 !important;
+}
+
+/* Botones */
+button {
+  background-color: #A8165C !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+}
+
+button:hover {
+  background-color: #850e49 !important;
+}
