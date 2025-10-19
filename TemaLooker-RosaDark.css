@@ -1,0 +1,37 @@
+/* ===== Tema Púrpura Dark ===== */
+:root{
+  --bg: #161616;
+  --text: #f2f2f4;
+  --muted: #1f1f1f;
+  --line: #2a2a2a;
+  --accent: #A8165C;
+  --highlight-row: rgba(168,22,92,0.16);
+  --highlight-col: rgba(168,22,92,0.22);
+  --link: #ff9ac7; /* púrpura claro para links */
+}
+
+body{ background:var(--bg) !important; color:var(--text) !important; font-family:"Inter","Segoe UI",sans-serif !important; }
+table{ position:relative; border-collapse:collapse !important; }
+
+th{
+  background:var(--muted) !important; color:var(--accent) !important;
+  border-bottom:2px solid var(--accent) !important; font-weight:700 !important;
+}
+td{
+  background:#1c1c1c !important; border-bottom:1px solid var(--line) !important;
+  color:#ececec !important; position:relative; z-index:1;
+}
+tr:nth-child(even) td{ background:#202020 !important; }
+
+tr:hover td{ background:var(--highlight-row) !important; color:#ffe9f3 !important; }
+td:hover::before, th:hover::before{
+  content:""; position:absolute; top:-9999px; bottom:-9999px; left:0; right:0;
+  background:var(--highlight-col) !important; z-index:-1; pointer-events:none;
+}
+
+a{ color:var(--link) !important; }
+button{
+  background:var(--accent) !important; color:#fff !important; border:none !important;
+  border-radius:8px !important; font-weight:700 !important;
+}
+button:hover{ filter:brightness(0.95) !important; }
