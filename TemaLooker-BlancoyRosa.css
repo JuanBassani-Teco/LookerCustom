@@ -1,51 +1,39 @@
-/* Fondo general */
-body {
-  background-color: #ffffff !important;
-  color: #222 !important;
-  font-family: "Inter", "Segoe UI", sans-serif !important;
+/* ===== Tema Púrpura Suave ===== */
+:root{
+  --bg: #ffffff;
+  --text: #222;
+  --muted: #f9e8f0;
+  --line: #e7d2db;
+  --accent: #A8165C;
+  --highlight-row: rgba(168,22,92,0.08);
+  --highlight-col: rgba(168,22,92,0.12);
+  --link: #A8165C;
 }
 
-/* Header de tabla */
-th {
-  background-color: #f9e8f0 !important;
-  color: #A8165C !important;
-  border-bottom: 2px solid #A8165C !important;
-  font-weight: 600 !important;
+body{ background:var(--bg) !important; color:var(--text) !important; font-family:"Inter","Segoe UI",sans-serif !important; }
+table{ position:relative; border-collapse:collapse !important; }
+
+th{
+  background:var(--muted) !important; color:var(--accent) !important;
+  border-bottom:2px solid var(--accent) !important; font-weight:700 !important;
+}
+td{
+  background:#fff !important; border-bottom:1px solid var(--line) !important;
+  color:var(--text) !important; position:relative; z-index:1;
+}
+tr:nth-child(even) td{ background:#fff !important; }
+tr:nth-child(odd) td{ background:#fdfbfc !important; }
+
+tr:hover td{ background:var(--highlight-row) !important; }
+td:hover::before, th:hover::before{
+  content:""; position:absolute; top:-9999px; bottom:-9999px; left:0; right:0;
+  background:var(--highlight-col) !important; z-index:-1; pointer-events:none;
 }
 
-/* Celdas */
-td {
-  background-color: #fff !important;
-  border-bottom: 1px solid #ddd !important;
-  color: #222 !important;
+a{ color:var(--link) !important; font-weight:600 !important; }
+button{
+  background:var(--accent) !important; color:#fff !important; border:none !important;
+  border-radius:8px !important; font-weight:700 !important;
 }
+button:hover{ filter:brightness(0.95) !important; }
 
-/* Filas alternas */
-tr:nth-child(even) td {
-  background-color: #f9f9f9 !important;
-}
-
-/* Hover */
-tr:hover td {
-  background-color: #fde5f0 !important;
-  color: #7a0e44 !important;
-}
-
-/* Links */
-a {
-  color: #A8165C !important;
-  font-weight: 500 !important;
-}
-
-/* Botones */
-button {
-  background-color: #A8165C !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: 6px !important;
-  font-weight: 600 !important;
-}
-
-button:hover {
-  background-color: #850e49 !important;
-}
