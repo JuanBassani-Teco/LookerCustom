@@ -1,0 +1,65 @@
+/* ===== Tema Clásico: blanco/negro/gris ===== */
+:root{
+  --bg: #ffffff;
+  --text: #1e1e1e;
+  --muted: #f5f5f7;
+  --line: #e6e6e6;
+  --accent: #111;         /* negro para títulos/bordes */
+  --highlight-row: rgba(0,0,0,0.06);
+  --highlight-col: rgba(0,0,0,0.08);
+  --link: #111;
+}
+
+body{
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: "Inter","Segoe UI",system-ui,sans-serif !important;
+}
+
+/* Tabla */
+table{ position: relative; border-collapse: collapse !important; }
+
+/* Encabezados */
+th{
+  background: var(--muted) !important;
+  color: var(--accent) !important;
+  font-weight: 700 !important;
+  border-bottom: 2px solid var(--accent) !important;
+  letter-spacing: .02em !important;
+  text-transform: none !important;
+}
+
+/* Celdas */
+td{
+  background: #fff !important;
+  border-bottom: 1px solid var(--line) !important;
+  color: var(--text) !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Alternado sutil */
+tr:nth-child(even) td{ background: #fff !important; }
+tr:nth-child(odd) td{ background: #fafafa !important; }
+
+/* Hover fila */
+tr:hover td{
+  background: var(--highlight-row) !important;
+}
+
+/* Hover columna (truco CSS) */
+td:hover::before, th:hover::before{
+  content:"";
+  position:absolute;
+  top:-9999px; bottom:-9999px; left:0; right:0;
+  background: var(--highlight-col) !important;
+  z-index:-1; pointer-events:none;
+}
+
+/* Links y botones */
+a{ color: var(--link) !important; text-decoration: underline !important; }
+button{
+  background:#111 !important; color:#fff !important; border:none !important;
+  border-radius:8px !important; font-weight:700 !important;
+}
+button:hover{ filter: brightness(1.1) !important; }
