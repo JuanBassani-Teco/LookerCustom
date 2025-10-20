@@ -25,3 +25,11 @@ tr:hover td {
   background-color: #333 !important;
   color: #00ffb7 !important;
 }
+
+/* Ocultar tooltip de Looker */
+div[role="tooltip"], .tooltip, .looker-tooltip {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
