@@ -36,3 +36,10 @@ button{
 }
 button:hover{ filter:brightness(0.95) !important; }
 
+/* Ocultar tooltip de Looker */
+div[role="tooltip"], .tooltip, .looker-tooltip {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
