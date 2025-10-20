@@ -35,3 +35,11 @@ button{
   border-radius:8px !important; font-weight:700 !important;
 }
 button:hover{ filter:brightness(0.95) !important; }
+
+/* Ocultar tooltip de Looker */
+div[role="tooltip"], .tooltip, .looker-tooltip {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
