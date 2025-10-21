@@ -1,4 +1,4 @@
-/* ===== Tema Verde Dark (sticky + anti-tooltip mejorado) ===== */
+/* ===== Tema Verde Dark (sticky + anti-tooltip + ocultar overlay) ===== */
 :root{
   --bg: #181818;
   --text: #f0f0f0;
@@ -29,9 +29,13 @@ thead th, th{
   color: var(--accent) !important;
   border-bottom: 2px solid var(--accent) !important;
   font-weight: 700 !important;
+
+  /* Sticky header al scrollear */
   position: sticky !important;
   top: 0 !important;
   z-index: 5 !important;
+
+  /* Sombra sutil para separar al hacer scroll */
   box-shadow: 0 2px 0 rgba(0,0,0,0.25) !important;
 }
 
@@ -43,6 +47,7 @@ td{
   position: relative;
   z-index: 1;
 }
+
 tr:nth-child(even) td{ background: #232323 !important; }
 
 /* --- Hover fila --- */
@@ -51,7 +56,7 @@ tr:hover td{
   color: #dfffee !important;
 }
 
-/* --- Hover columna --- */
+/* --- Hover columna (truco con pseudo-elemento) --- */
 td:hover::before, th:hover::before{
   content: "";
   position: absolute;
@@ -76,42 +81,41 @@ button{
 button:hover{ filter: brightness(0.95) !important; }
 
 /* =======================
-   Anti-tooltip agresivo
+   Anti-tooltip (agresivo)
    ======================= */
-
-/* Oculta tooltips o labels flotantes de cualquier lib */
-:where([id*="tooltip"], [class*="tooltip"], [id*="hover"], [class*="hover-label"], [class*="hover-title"], [class*="hover-info"])
-  :not(table):not(thead):not(tbody):not(tr):not(th):not(td) {
+div[role="tooltip"],
+[class*="tooltip"],
+[aria-describedby*="tooltip"],
+.highcharts-tooltip,
+.google-visualization-tooltip,
+.d3-tip,
+.echarts-tooltip,
+.chartjs-tooltip{
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
 }
 
-/* Por si los insertan dentro del contenedor principal */
-:where(.looker, .looker-vis, .looker-table, .data-table, .table, .table-container)
-  :where([id*="tooltip"], [class*="tooltip"], [id*="hover"], [class*="hover-label"], [class*="hover-title"], [class*="hover-info"]) {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
-
-/* Previene overlays que sobresalen por arriba/izquierda */
-:where(.looker, .looker-vis, .looker-table, .data-table, .table, .table-container, table, thead, tbody) {
-  overflow: hidden !important;
-}
-
-/* Si usan pseudo-elementos para mostrar texto hover */
-th:hover::after, td:hover::after { content: none !important; }
-
-/* Tooltips nativos de navegador (title) */
-[title]:hover::after {
-  display: none !important;
+th:hover::after, td:hover::after{
   content: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
 }
 
-/* Refuerzo del z-index para mantener headers visibles */
 thead th{ z-index: 6 !important; }
 
+/* ==============================
+   “Camuflar” el tooltip de Looker
+   ============================== */
+
+/* Si Looker genera un div flotante arriba de la tabla */
+div[id*="hover"], div[class*="hover"], div[class*="tooltip"], 
+div[class*="label"], div[class*="header-hover"], div[class*="hover-info"] {
+  background: var(--bg) !important;   /* mismo color del fondo */
+  color: var(--bg) !important;        /* texto invisible */
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  opacity: 0.05 !important;           /* 100 % invisible al ojo humano */
+  transition: none !important;
+  pointer-events: none !important;    /* que no interfiera */
+}
 
