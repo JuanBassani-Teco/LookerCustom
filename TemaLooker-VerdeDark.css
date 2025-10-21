@@ -119,3 +119,18 @@ div[class*="label"], div[class*="header-hover"], div[class*="hover-info"] {
   pointer-events: none !important;    /* que no interfiera */
 }
 
+/* ===== Ocultar tooltip flotante nativo de Looker ===== */
+#tooltip {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  background: transparent !important;
+  color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+}
+
+
