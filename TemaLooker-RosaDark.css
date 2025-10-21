@@ -1,4 +1,4 @@
-/* ===== Tema Púrpura Dark ===== */
+/* ===== Tema Púrpura Dark (sticky + no tooltip) ===== */
 :root{
   --bg: #161616;
   --text: #f2f2f4;
@@ -10,36 +10,105 @@
   --link: #ff9ac7; /* púrpura claro para links */
 }
 
-body{ background:var(--bg) !important; color:var(--text) !important; font-family:"Inter","Segoe UI",sans-serif !important; }
-table{ position:relative; border-collapse:collapse !important; }
-
-th{
-  background:var(--muted) !important; color:var(--accent) !important;
-  border-bottom:2px solid var(--accent) !important; font-weight:700 !important;
+body{
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: "Inter","Segoe UI",sans-serif !important;
 }
+
+/* --- Tabla base --- */
+table{
+  position: relative;
+  border-collapse: collapse !important;
+  width: 100%;
+}
+
+/* --- Encabezados (sticky) --- */
+thead th, th{
+  background: var(--muted) !important;
+  color: var(--accent) !important;
+  border-bottom: 2px solid var(--accent) !important;
+  font-weight: 700 !important;
+
+  /* Sticky header */
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 5 !important;
+
+  /* Sombra leve al hacer scroll */
+  box-shadow: 0 2px 0 rgba(0,0,0,0.3) !important;
+}
+
+/* --- Celdas --- */
 td{
-  background:#1c1c1c !important; border-bottom:1px solid var(--line) !important;
-  color:#ececec !important; position:relative; z-index:1;
+  background: #1c1c1c !important;
+  border-bottom: 1px solid var(--line) !important;
+  color: #ececec !important;
+  position: relative;
+  z-index: 1;
 }
-tr:nth-child(even) td{ background:#202020 !important; }
 
-tr:hover td{ background:var(--highlight-row) !important; color:#ffe9f3 !important; }
+tr:nth-child(even) td{ background: #202020 !important; }
+tr:nth-child(odd) td{ background: #1c1c1c !important; }
+
+/* --- Hover fila --- */
+tr:hover td{
+  background: var(--highlight-row) !important;
+  color: #ffe9f3 !important;
+}
+
+/* --- Hover columna --- */
 td:hover::before, th:hover::before{
-  content:""; position:absolute; top:-9999px; bottom:-9999px; left:0; right:0;
-  background:var(--highlight-col) !important; z-index:-1; pointer-events:none;
+  content: "";
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: 0;
+  right: 0;
+  background: var(--highlight-col) !important;
+  z-index: -1;
+  pointer-events: none;
 }
 
-a{ color:var(--link) !important; }
+/* --- Links y botones --- */
+a{
+  color: var(--link) !important;
+}
 button{
-  background:var(--accent) !important; color:#fff !important; border:none !important;
-  border-radius:8px !important; font-weight:700 !important;
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
 }
-button:hover{ filter:brightness(0.95) !important; }
+button:hover{
+  filter: brightness(0.95) !important;
+}
 
-/* Ocultar tooltip de Looker */
-div[role="tooltip"], .tooltip, .looker-tooltip {
+/* =======================
+   Anti-tooltip (Looker)
+   ======================= */
+div[role="tooltip"],
+[class*="tooltip"],
+.looker-tooltip,
+#tooltip {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
+  background: transparent !important;
+  color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -9999 !important;
 }
+
+/* Por si usan ::after para mostrar tips */
+th:hover::after, td:hover::after{
+  content: none !important;
+}
+
+/* Header siempre arriba */
+thead th{ z-index: 6 !important; }
 
