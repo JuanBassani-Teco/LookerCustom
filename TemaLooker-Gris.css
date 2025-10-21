@@ -1,35 +1,115 @@
-body {
-  background-color: #1e1e1e !important;
-  color: #f5f5f5 !important;
+/* ===== Tema Azul Dark (sticky + no tooltip) ===== */
+:root{
+  --bg: #1e1e1e;
+  --text: #f5f5f5;
+  --muted: #2a2a2a;
+  --line: #333333;
+  --accent: #00bfff;
+  --highlight-row: rgba(0,191,255,0.12);
+  --highlight-col: rgba(0,191,255,0.18);
+  --link: #00bfff;
+}
+
+body{
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
   font-family: "Inter", "Segoe UI", sans-serif !important;
 }
 
-th {
-  background-color: #2a2a2a !important;
-  color: #00bfff !important;
+/* --- Tabla base --- */
+table{
+  position: relative;
+  border-collapse: collapse !important;
+  width: 100%;
+}
+
+/* --- Encabezados (sticky) --- */
+thead th, th{
+  background-color: var(--muted) !important;
+  color: var(--accent) !important;
   font-weight: bold !important;
-  border-bottom: 2px solid #00bfff !important;
+  border-bottom: 2px solid var(--accent) !important;
+
+  /* Sticky header */
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 5 !important;
+
+  /* Sombra al hacer scroll */
+  box-shadow: 0 2px 0 rgba(0,0,0,0.3) !important;
 }
 
-td {
+/* --- Celdas --- */
+td{
   background-color: #242424 !important;
-  border-bottom: 1px solid #333 !important;
-  color: #f5f5f5 !important;
+  border-bottom: 1px solid var(--line) !important;
+  color: var(--text) !important;
+  position: relative;
+  z-index: 1;
 }
 
-tr:nth-child(even) td {
-  background-color: #1f1f1f !important;
-}
+/* Alternado de filas */
+tr:nth-child(even) td{ background-color: #1f1f1f !important; }
+tr:nth-child(odd) td{ background-color: #242424 !important; }
 
-tr:hover td {
-  background-color: #333 !important;
+/* --- Hover fila --- */
+tr:hover td{
+  background-color: var(--highlight-row) !important;
   color: #00ffb7 !important;
 }
 
-/* Ocultar tooltip de Looker */
-div[role="tooltip"], .tooltip, .looker-tooltip {
+/* --- Hover columna (efecto combinado) --- */
+td:hover::before, th:hover::before{
+  content: "";
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: 0;
+  right: 0;
+  background: var(--highlight-col) !important;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --- Links y botones --- */
+a{
+  color: var(--link) !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+}
+button{
+  background: var(--accent) !important;
+  color: #111 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+}
+button:hover{ filter: brightness(1.1) !important; }
+
+/* =======================
+   Anti-tooltip (Looker)
+   ======================= */
+div[role="tooltip"],
+[class*="tooltip"],
+.looker-tooltip,
+#tooltip {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
+  background: transparent !important;
+  color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -9999 !important;
 }
+
+/* Por si usan ::after para mostrar tips */
+th:hover::after, td:hover::after{
+  content: none !important;
+}
+
+/* Header siempre arriba */
+thead th{ z-index: 6 !important; }
 
