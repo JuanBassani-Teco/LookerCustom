@@ -1,4 +1,4 @@
-/* ===== Tema Verde Dark ===== */
+/* ===== Tema Verde Dark (sticky + anti-tooltip) ===== */
 :root{
   --bg: #181818;
   --text: #f0f0f0;
@@ -10,36 +10,99 @@
   --link: #2DE384;
 }
 
-body{ background:var(--bg) !important; color:var(--text) !important; font-family:"Inter","Segoe UI",sans-serif !important; }
-table{ position:relative; border-collapse:collapse !important; }
-
-th{
-  background:var(--muted) !important; color:var(--accent) !important;
-  border-bottom:2px solid var(--accent) !important; font-weight:700 !important;
+body{
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: "Inter","Segoe UI",system-ui,sans-serif !important;
 }
+
+/* --- Tabla base --- */
+table{
+  position: relative;
+  border-collapse: collapse !important;
+  width: 100%;
+}
+
+/* --- Encabezados (sticky) --- */
+thead th, th{
+  background: var(--muted) !important;
+  color: var(--accent) !important;
+  border-bottom: 2px solid var(--accent) !important;
+  font-weight: 700 !important;
+
+  /* Sticky header al scrollear */
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 5 !important;
+
+  /* Sombra sutil para separar al hacer scroll */
+  box-shadow: 0 2px 0 rgba(0,0,0,0.25) !important;
+}
+
+/* --- Celdas --- */
 td{
-  background:#1f1f1f !important; border-bottom:1px solid var(--line) !important;
-  color:#eaeaea !important; position:relative; z-index:1;
+  background: #1f1f1f !important;
+  border-bottom: 1px solid var(--line) !important;
+  color: #eaeaea !important;
+  position: relative;
+  z-index: 1;
 }
-tr:nth-child(even) td{ background:#232323 !important; }
 
-tr:hover td{ background:var(--highlight-row) !important; color:#dfffee !important; }
+tr:nth-child(even) td{ background: #232323 !important; }
+
+/* --- Hover fila --- */
+tr:hover td{
+  background: var(--highlight-row) !important;
+  color: #dfffee !important;
+}
+
+/* --- Hover columna (truco con pseudo-elemento) --- */
 td:hover::before, th:hover::before{
-  content:""; position:absolute; top:-9999px; bottom:-9999px; left:0; right:0;
-  background:var(--highlight-col) !important; z-index:-1; pointer-events:none;
+  content: "";
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: 0;
+  right: 0;
+  background: var(--highlight-col) !important;
+  z-index: -1;
+  pointer-events: none;
 }
 
-a{ color:var(--link) !important; }
+/* --- Links & botones --- */
+a{ color: var(--link) !important; }
 button{
-  background:var(--accent) !important; color:#111 !important; border:none !important;
-  border-radius:8px !important; font-weight:700 !important;
+  background: var(--accent) !important;
+  color: #111 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
 }
-button:hover{ filter:brightness(0.95) !important; }
+button:hover{ filter: brightness(0.95) !important; }
 
-/* Ocultar tooltip de Looker */
-div[role="tooltip"], .tooltip, .looker-tooltip {
+/* =======================
+   Anti-tooltip (agresivo)
+   ======================= */
+/* Tooltips generados por librerías */
+div[role="tooltip"],
+[class*="tooltip"],
+[aria-describedby*="tooltip"],
+.highcharts-tooltip,
+.google-visualization-tooltip,
+.d3-tip,
+.echarts-tooltip,
+.chartjs-tooltip{
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
 }
+
+/* Por si usan ::after para mostrar tips en headers/celdas */
+th:hover::after, td:hover::after{
+  content: none !important;
+}
+
+/* Si Looker usa highlight propio en headers, mantenelos arriba */
+thead th{ z-index: 6 !important; }
+
 
